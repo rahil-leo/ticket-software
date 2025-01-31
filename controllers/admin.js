@@ -61,7 +61,7 @@ exports.adminlogged = async (req, res) => {
     }
 }
 
-// this is admin page
+
 
 
 exports.admin = (req, res) => {
