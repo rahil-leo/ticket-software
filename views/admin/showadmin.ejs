@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show details</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <div>
+        <div class="home-div">
+            <div class="navbar">
+                <a href="/admin/adduser"><button>Add user</button></a>
+                <a href="/admin/change"><button>Change Admin</button></a>
+                <h4>collection:<%=abc%></h4>
+                <!-- <a href="/travellers"><button>booked passengers</button></a> -->
+                <a href="/logout"><button class="logout">log-out</button></a>
+                <a href="/travellers"><button>passengers</button></a>
+            </div>
+            <div class="container">
+                <table>
+                    <tr>
+                        <td>no</td>
+                        <td>name</td>
+                        <td>date</td>
+                        <td>bus</td>
+                        <td>price</td>
+                    </tr>
+
+                    <%usman.forEach((i)=>{%>
+                        <tr>
+                            <td><%=usman.indexOf(i) +1%></td>
+                            <td><%=i.username%></td>
+                            <td>
+                                <%=i.date%>
+                            </td>
+                            <td>
+                                <%=i.bus%>
+                            </td>
+                            <td>
+                                <%=i.price%>
+                            </td>
+                        </tr>
+                        <%})%>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

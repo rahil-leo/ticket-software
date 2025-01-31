@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="window-div1">
+        <div class="form-div1">
+            <form action="/login" method="post">
+                <input type="text" class="logininput" name="loginname" required placeholder="ENTER USERNAME">
+                <input type="text" class="logininput" name="loginpassword" required placeholder="ENTER PASSWORD">
+                <button class="signupbtn" type="submit">LOGN IN</button>
+                <p class="error">
+                    <%=msg%>
+                </p>
+            </form>
+            <!-- <button class="quickmove"><a href=/signup>SIGNUP</a></button> -->
+        </div>
+    </div>
+</body>
+</html>

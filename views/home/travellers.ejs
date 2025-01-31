@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passengers</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div>
+        <div class="home-div">
+            <div class="navbar">
+                <a href="/bookbus"><button>bookbus</button></a>
+                <a href="/"><button>home</button></a>
+                <h3></h3>
+                <a href="/travellers"><button>booked passengers</button></a>
+                <a href="/logout"><button class="logout">log-out</button></a>
+    
+            </div>
+            <div class="container">
+                <table>
+                    <tr>
+                        <th>name</th>
+                        <th>date</th>
+                        <th>bus</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>price</th>
+                        <th>Cancel ticekt</th>
+                
+                    </tr>
+                    <%bookdetails.forEach((i)=>{%>
+                        <tr>
+                            <td>
+                                <%=i.username%>
+                            </td>
+                            <td>
+                                <%=i.date%>
+                            </td>
+                            <td>
+                                <%=i.bus%>
+                            </td>
+                            <td>
+                                <%=i.from%>
+                            </td>
+                            <td>
+                                <%=i.to%>
+                            </td>
+                            <td>
+                                <%=i.price%>
+                            </td>
+                            <td>
+                                <a href="/delete/<%=i.id%>"><button>cancel ticket</button></a>
+                            </td>
+                        </tr>
+                        <%})%>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

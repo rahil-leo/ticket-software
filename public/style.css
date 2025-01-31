@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "poppins";
+}
+.window-div1{
+    height: 100vh;
+    width: 100%;
+    background-color: tan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-attachment: fixed;
+}
+.form-div1{
+    height: 400px;
+    width: 450px;
+    background-color: thistle;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 2px solid black ;
+    box-sizing: border-box;
+}
+.quickmove{
+    padding: 5px 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color:black;
+}
+.quickmove:hover{
+    background-color: grey;
+    color: black;
+}
+.error{
+    margin: 10px 100px;
+    color: green;
+    font-size: medium;
+}
+a{
+    color: white;
+    
+}
+.logininput{
+    padding: 10px 110px;
+}
+
+/* sign up */
+
+
+.window-div{
+    height: 100vh;
+    width: 100%;
+    background-color: wheat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-div{
+    height: 400px;
+    width: 450px;
+    background-color: seashell;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black ;
+
+}
+input{
+    padding: 5px 20px;
+    /* margin-left: 30px; */
+    width: 100%;
+   
+}
+.signupbtn{
+    padding: 5px 5px;
+    margin-left: 190px;
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+}
+.signupbtn:hover{
+    background-color: gray;
+    color: black;
+}
+.signupinput{
+    padding: 10px 110px;
+}
+
+/* navbar */
+.home-div{
+    height: 100vh;
+    width: 100%;
+    background-color: silver;
+}
+
+.navbar{
+    width: 100%;
+    height: 10%;
+    background-color: slategrey;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+button{
+    background-color: slategrey;
+    border: none;
+    font-weight: bolder;
+    padding: 10px 10px;
+}
+button:hover{
+    background-color:black ;
+    color: white;
+    border-radius: 20px;
+}
+/* booking route css*/
+.booking-div{
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(91, 108, 110);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.booking-div1{
+    height: 500px;
+    width: 40%;
+    background-color: rgb(118, 117, 111);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid black;
+
+}
+.booking-input{
+    width: 100%;
+    padding: 10px 10px;
+    margin: 5px;
+}
+
+p{
+    font-weight: bolder;
+}
+
+select{
+    padding: 5px 20px;
+}
+.submit{
+    padding: 5px 10px;
+}
+table{
+   border: 1px solid black;
+    border-collapse: collapse;
+   
+}
+tr{
+    border: 1px solid black;
+     padding-left: 100px;
+   
+
+}
+td{
+     border: 1px solid black;
+     width: 200px;
+     padding: 5px;
+    
+}
+th{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+/* admin */
+
+.window-div4{
+    height: 100vh;
+    width: 100%;
+    background-color: tan;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-attachment: fixed;
+}
+.form-div4{
+    height: 400px;
+    width: 450px;
+    background-color: thistle;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 2px solid black ;
+    box-sizing: border-box;
+}
+.search-div{
+    background-color: silver;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-div{
+    height: 100vh;
+    width: 100%;
+    background-color: cornflowerblue;
+    
+}
+.form-div5{
+    height: 90vh;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.collection-div{
+    height: 100vh;
+    width: 100%;
+    background-color: silver;
+}
+
+.container{
+    padding:10px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-signup{
+    height: 100vh;
+    width: 100%;
+    background-color: oldlace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-div5{
+    height: 400px;
+    width: 450px;
+    background-color: seashell;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+fieldset{
+    border-radius: 10px;
+    border: 1px solid black;
+ 
+}
+
+.form-div6{
+    height: 400px;
+    width: 450px;
+    background-color: slategrey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.admin-login{
+    height: 100vh;
+    width: 100%;
+     background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* add user  */
+
+.adduser-div{
+    height: 100vh;
+    width: 100%;
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* change */
+
+.change-div{
+    width: 100%;
+    height: 100vh;
+    background-color: thistle;
+
+}
+.change-div1{
+    height: 400px;
+    width: 400px;
+    background-color: blanchedalmond;
+    display: inline-block;
+   
+}
+
+.change-div3{
+    background-color: slategrey;
+    width: 400px;
+    height: 400px;
+    display: inline-block;
+}
+
+
+
+
