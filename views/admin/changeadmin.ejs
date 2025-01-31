@@ -5,37 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .main-change-div{
+            width: 100%;
+            height: 100vh;
+            background-color: cadetblue;
+        }
+        .change-div{
+            width: 100%;
+            height: 100vh;
+            background-color: wheat;
+            display: inline-block;
+            
+        }
+        .change-form{
+            width: 300px;
+            height: 300px;
+            background-color: cadetblue;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: inline-block;
+            vertical-align: top;
+
+        }
+         .change-form1{
+            width: 300px;
+            height: 300px;
+            background-color: rgb(95, 101, 160);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: inline-block;
+
+        }
+    </style>
 </head>
 <body>
     <div>
-        <div class="change-div">
+        <div class="main-change-div">
             <div class="navbar">
                 <a href="/admin/adduser"><button>Add user</button></a>
                 <a href="/admin/change"><button>Change Admin</button></a>
                 </h4>
                 <a href="/admin"><button>home</button></a>
-                <a href="/logout"><button class="logout">log-out</button></a>
+                <a href="/admin/logout"><button class="logout">log-out</button></a>
                 <a href="/travellers"><button>passengers</button></a>
             </div>
-            <div class="change-div1">
-                <div class="change-div2">
-                    <div class="change-form">
-                        <form action="">
-                            <input type="text" class="newinput" name="newadmin" placeholder="Newname">
+            <div class="change-div">
+                <div class="change-form">
+                    <div>
+                        <form action="" method>
+                            <input type="text" name="newadmin" placeholder="new admin name">
                             <button type="submit">add</button>
                         </form>
                     </div>
                 </div>
-                <div class="change-div3">
-                    <div class="change-div4">
-                        <form action="">
-                            <input type="text" name="currentassword" placeholder="current password">
-                            <input type="text" name="newpassword" placeholder="new password">
-                            <button type="submit">add</button>
-                        </form>
-                    </div>
+                <div class="change-form1">
+                    <input type="text" name="" placeholder="username">
+                    <input type="number" placeholder="current password">
+                    <input type="number" placeholder="new password">
+                    <button type="submit">add</button>
                 </div>
             </div>
+           
         </div>
     </div>
 </body>

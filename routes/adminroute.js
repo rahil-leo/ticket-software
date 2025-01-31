@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const { admin, showadmin, adminsignup, adminlogin, adminsigned, adminlogged, addnewuser, useradded, change } = require('../controllers/admin')
-const { isAdminLogged } = require('../middleware/admincheck')
+const { admin, showadmin, adminsignup, adminlogin, adminsigned, adminlogged, addnewuser, useradded, logout, change } = require('../controllers/admin')
+const { isAdminLogged,cookie } = require('../middleware/admincheck')
 
 router
     .route('/')
@@ -14,8 +14,11 @@ router
     .post(adminsigned)
 router
     .route('/adminloging')
-    .get(isAdminLogged,adminlogin)
+    .get(cookie,adminlogin)
     .post(adminlogged)
+router
+    .route('/logout')
+    .get(logout)    
 router
     .route('/adduser')
     .get(isAdminLogged,addnewuser)

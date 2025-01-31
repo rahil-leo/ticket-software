@@ -20,13 +20,13 @@ exports.adminsigned = async (req, res) => {
         }
         console.log(admindetails, 'this is signed detials1')
         
-        let storeuser = await Admin.findOne({ username: adminsigned })
+        let storeuser = await Admin.findOne({ username: adminsigned})
         console.log(storeuser, 'this is stored user')
         if (storeuser) {
             return res.render('adminauth/adminsignup', { msg: ' username is already taken' })
         }
         await Admin.create(admindetails)
-        return res.render('adminauth/adminlogin')
+        return res.render('adminauth/adminlogin',{msg:''})
     } catch (e) {
         console.log(e)
         return res.send('error page')
@@ -44,7 +44,7 @@ exports.adminlogged = async (req, res) => {
         var loggedUser = req.body.adminlogin
         var loggedPassword = req.body.adminpassword
 
-        var user = await Admin.find({ username: req.body.adminlogin, password: loggedPassword })
+        var user = await Admin.findOne({ username: req.body.adminlogin, password: req.body.adminpassword })
         console.log(user,'this is find admin')
 
         if (!user) {
@@ -53,7 +53,7 @@ exports.adminlogged = async (req, res) => {
         const admintoken = adminjwt(user)
         console.log(admintoken,'this admin token u just type now')
 
-        return res.cookie('cookie', admintoken, { httpOnly: true }).redirect('/admin')
+        return res.cookie('admincookie', admintoken, { httpOnly: true }).redirect('/admin')
 
     } catch (e) {
         console.log(e)
@@ -126,4 +126,9 @@ exports.useradded = async (req, res) => {
 
 exports.change = (req, res) => {
     return res.render('admin/changeadmin')
+}
+
+exports.logout = (req, res) => {
+    console.log('this is clearing')
+    return res.clearCookie('admincookie').render('adminauth/adminlogin')
 }

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
 exports.connectDB = async () => {
-    await mongoose.connect('mongodb+srv://jubail:28308000@rahil.f0nsc.mongodb.net/busticket')
+    await mongoose.connect(process.env.DB)
     console.log('connect db')
 }
