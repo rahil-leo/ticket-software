@@ -1,7 +1,10 @@
 let Ticket = require('../models/Ticket')
 let Admin = require('../models/Admin')
 let adminjwt = require('../utils/adminJwt')
+
+
 let User = require('../models/User')
+const abc = require('../utils/adminJwt')
 
 
 exports.adminsignup = (req, res) => {
@@ -10,21 +13,21 @@ exports.adminsignup = (req, res) => {
 
 exports.adminsigned = async (req, res) => {
     try {
-        var adminsigned = req.body.adminsignup
+        var adminsigned = req.body.username
         var adminpassword = req.body.adminpassword
+
+        let storeuser = await Admin.findOne({ username: req.body.username })
+
+        if (storeuser) {
+            return res.render('adminauth/adminsignup', { msg: ' username is already taken' })
+        }
 
         let admindetails = {
             username: adminsigned,
             password: adminpassword,
             id: Date.now()
         }
-        console.log(admindetails, 'this is signed detials1')
-        
-        let storeuser = await Admin.findOne({ username: adminsigned})
-        console.log(storeuser, 'this is stored user')
-        if (storeuser) {
-            return res.render('adminauth/adminsignup', { msg: ' username is already taken' })
-        }
+        // console.log(admindetails, 'this is signed detials1 ')
         await Admin.create(admindetails)
         return res.render('adminauth/adminlogin',{msg:''})
     } catch (e) {
@@ -44,25 +47,29 @@ exports.adminlogged = async (req, res) => {
         var loggedUser = req.body.adminlogin
         var loggedPassword = req.body.adminpassword
 
-        var user = await Admin.findOne({ username: req.body.adminlogin, password: req.body.adminpassword })
-        console.log(user,'this is find admin')
+        // console.log(req.body.adminlogin, req.body.adminpassword)
 
-        if (!user) {
-            return res.render('adminauth/adminlogin', { msg: 'invalid password or username' })
+        var user = await Admin.findOne({ username: req.body.adminlogin })
+
+        // console.log(user, 'this is find admin in login')
+
+        if (user) {
+            const validate = await user.validatepassword(req.body.adminpassword)
+            if (!validate) {
+                return res.render('adminauth/adminlogin', { msg: 'invalid password or username' })
+            }
+            // console.log(validate, 'this is validate')
+            const admintoken = adminjwt(user)
+            // console.log(admintoken, 'this admin find')
+            return res.cookie('admincookie', admintoken, { httpOnly: true }).redirect('/admin')
         }
-        const admintoken = adminjwt(user)
-        console.log(admintoken,'this admin token u just type now')
-
-        return res.cookie('admincookie', admintoken, { httpOnly: true }).redirect('/admin')
+        return res.render('adminauth/adminlogin',{msg:'unexpected error '})
 
     } catch (e) {
         console.log(e)
-        return res.send('no page')
+        return res.render('adminauth/adminlogin',{msg:'error'})
     }
 }
-
-
-
 
 exports.admin = (req, res) => {
     return res.render('admin/admin')
@@ -110,9 +117,9 @@ exports.useradded = async (req, res) => {
             password: userpassword,
             id: Date.now()
         }
-        console.log(signedetails, 'this is signed detials')
+        // console.log(signedetails, 'this is signed detials')
         let storeuser = await User.findOne({ username: usersigned })
-        console.log(storeuser, 'this is stored user')
+        // console.log(storeuser, 'this is stored user')
         if (storeuser) {
             return res.render('admin/adduser', { msg: ' username is already taken' })
         }
@@ -124,11 +131,82 @@ exports.useradded = async (req, res) => {
     }
 }
 
+// here change username
+
+exports.changeuser = (req, res) => {
+    return res.render('admin/changeuser')
+} 
+
+exports.changeuserpassword =async (req, res) => {
+    try {
+        const userchange = await User.findOne({ username: req.body.username })
+        if (!userchange) {
+            // console.log('working this 1')
+            return res.render('admin/changeuser', { msg: 'Admin name is incorect' })
+        }
+
+        const samepassword = await userchange.validatepassword(req.body.newpassword)
+        if (samepassword) {
+            // console.log('working this 2')
+            return res.render('admin/changeuser', { msg: 'New password must be different' })
+        }
+
+        console.log('working this 3')
+        userchange.password = req.body.newpassword;
+        await userchange.save()
+
+        return res.render('auth/login', { msg: 'Password updated' })
+    } catch (error) {
+        console.log(error)
+        return res.render('admin/changeuser', { msg: 'Error updating password' })
+    }
+}
+
+
+//here change admin password and username
+
+
 exports.change = (req, res) => {
-    return res.render('admin/changeadmin')
+    let abc = req.user.username
+    console.log(abc)
+    return res.render('admin/changeadmin',{msg:'', abc})
+}
+
+
+exports.updateadminpassword = async (req, res) => {
+    try {
+        const admin = await Admin.findOne({ username: req.body.username })
+        if (!admin) {
+            return res.render('admin/changeadmin', { msg: 'Admin name is incorect' })
+        }
+
+        const samepassword = await admin.validatepassword(req.body.newpassword)
+        if (samepassword) {
+            return res.render('admin/changeadmin', { msg: 'New password must be different' })
+        }
+        
+        admin.password = req.body.newpassword;
+        await admin.save()
+
+        return res.render('adminauth/adminlogin', { msg: 'Password updated' })
+    } catch (error) {
+        return res.render('admin/changeadmin', { msg: 'Error updating password' })
+    }
+}
+
+exports.changeadminname =async (req, res) => {
+    try {
+        await Admin.findOneAndUpdate(
+            { username: req.body.currentname },
+            { username: req.body.newname }
+        )
+        return res.render('adminauth/adminlogin', { msg: 'changed' })
+    } catch(err) {
+        console.log(err)
+        res.send('username is not changed')
+    }
 }
 
 exports.logout = (req, res) => {
-    console.log('this is clearing')
-    return res.clearCookie('admincookie').render('adminauth/adminlogin')
+    return res.clearCookie('admincookie').render('adminauth/adminlogin',{msg:''})
 }

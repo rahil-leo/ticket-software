@@ -22,10 +22,10 @@ exports.isLoggedin = (req, res, next) => {
 exports.usercookie = (req, res, next) => {
     try {
         const usercookie = req.cookies?.cookie
-        console.log(usercookie)
+        // console.log(usercookie)
         if (!usercookie) {
             next()
-            console.log('there is no cookie for this user ')
+            // console.log('there is no cookie for this user ')
         } else {
             return res.render('auth/login')
         }

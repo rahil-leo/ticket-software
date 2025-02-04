@@ -1,21 +1,16 @@
 const jwt = require('jsonwebtoken')
 
+
+
 exports.isAdminLogged = (req, res, next) => {
-    const adminstoken = req.cookies?.admincookie
+    const cookie = req.cookies.admincookie
 
-    console.log(adminstoken,'this is user adminstoken')
-
-    if (!adminstoken) {
-        next()
-    }
     try {
-        var decoded = jwt.verify(adminstoken, 'ADMINSECRET')
-        console.log(decoded , 'this is decoded value')
+        const decoded = jwt.verify(cookie, 'ADMINSECRET')
         req.user = decoded
-        return next()
-    } catch (e) {
-        console.log(e)
-        return res.clearCookie('cookie').redirect('/admin/adminloging')
+        next()
+    } catch {
+        return res.render('adminauth/adminlogin',{msg:'token error'})
     }
 }
 

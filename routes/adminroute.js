@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const { admin, showadmin, adminsignup, adminlogin, adminsigned, adminlogged, addnewuser, useradded, logout, change } = require('../controllers/admin')
-const { isAdminLogged,cookie } = require('../middleware/admincheck')
+const { admin, showadmin, adminsignup, adminlogin, adminsigned, adminlogged, addnewuser, useradded, logout, change, updateadminpassword, changeadminname, changeuser, changeuserpassword } = require('../controllers/admin')
+const { isAdminLogged, cookie } = require('../middleware/admincheck')
+const { isLoggedin } = require('../middleware/check')
+
 
 router
     .route('/')
@@ -10,7 +12,7 @@ router
     .post(showadmin)
 router
     .route('/adminsignup')
-    .get(isAdminLogged,adminsignup)
+    .get(adminsignup)
     .post(adminsigned)
 router
     .route('/adminloging')
@@ -24,7 +26,16 @@ router
     .get(isAdminLogged,addnewuser)
     .post(useradded)
 router
+    .route('/changeuser')
+    .get(isLoggedin,changeuser)
+    .post(changeuserpassword)
+router
     .route('/change')
-    .get(change)
+    .get(isAdminLogged,change)
+    .post(updateadminpassword)
+router
+    .route('/changeadmin')
+    .post(changeadminname)
+
 
 module.exports = router

@@ -9,7 +9,7 @@
 .window-div1{
     height: 100vh;
     width: 100%;
-    background-color: tan;
+    background-color: slategrey;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +19,7 @@
 .form-div1{
     height: 400px;
     width: 450px;
-    background-color: thistle;
+    background-color: silver;
     padding: 50px;
     border-radius: 10px;
     display: flex;
