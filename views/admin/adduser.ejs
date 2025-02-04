@@ -17,10 +17,10 @@
             <a href="/admin/logout"><button class="logout">log-out</button></a>
             <a href="/travellers"><button>passengers</button></a>
         </div>
-        <div class="adduser-div">
-            <div class="form-div">
+        <div class="adduser-div" >
+            <div class="form-div" style="background-color: slategrey;padding: 20px;">
                 <form action="/admin/adduser" method="post">
-                    <input type="text" class="signupinput" name="signname" required placeholder="ENTER USERNAME">
+                    <input type="text" class="signupinput" name="signname" required placeholder="ENTER USERNAME" style="margin-bottom: 5px;">
                     <input type="text" class="signupinput" name="signpassword" required placeholder="ENTER PASSWORD">
                     <button class="signupbtn" type="submit">ADD USER</button>
                     <p class="error">

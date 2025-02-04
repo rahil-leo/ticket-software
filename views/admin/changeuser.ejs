@@ -23,10 +23,10 @@
             justify-content: center;
         }
     
-        .change-form {
+        .change-form5 {
             width: 300px;
             height: 300px;
-            background-color: cadetblue;
+            background-color: powderblue;
             padding: 10px;
             display: flex;
             justify-content: center;
@@ -39,7 +39,7 @@
         .change-form4 {
             width: 300px;
             height: 300px;
-            background-color: rgb(95, 101, 160);
+            background-color: silver;
             padding: 10px;
             display: flex;
             justify-content: center;
@@ -63,19 +63,19 @@
                 <a href="/travellers"><button>passengers</button></a>
             </div>
             <div class="change-div3">
-                <!-- <div class="change-form">
+                <div class="change-form5">
                     <div>
-                        <form action="/admin/changeadmin" method="post">
-                            <input type="text" name="currentname" placeholder="current name">
-                            <input type="text" name="newname" placeholder="new admin name">
+                        <form action="/admin/changeusername" method="post">
+                            <input type="text" name="currentname" placeholder="current name" required>
+                            <input type="text" name="newname" placeholder="new admin name" required>
                             <button type="submit">add</button>
                         </form>
                     </div>
-                </div> -->
+                </div>
     
                 <div class="change-form4">
                     <form action="/admin/changeuser" method="post">
-                        <input type="text" name="username" placeholder="username" required  >
+                        <input type="text" name="username" placeholder="username" required  disabled value="<%=abc%>" >
                         <input type="number" name="currentpassword" placeholder="current password" required>
                         <input type="number" name="newpassword" placeholder="new password" required>
                         <button type="submit">add</button>

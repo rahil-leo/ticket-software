@@ -134,7 +134,9 @@ exports.useradded = async (req, res) => {
 // here change username
 
 exports.changeuser = (req, res) => {
-    return res.render('admin/changeuser')
+    var abc = req.user.username
+    console.log(abc)
+    return res.render('admin/changeuser',{msg:'', abc})
 } 
 
 exports.changeuserpassword =async (req, res) => {
@@ -159,6 +161,19 @@ exports.changeuserpassword =async (req, res) => {
     } catch (error) {
         console.log(error)
         return res.render('admin/changeuser', { msg: 'Error updating password' })
+    }
+}
+
+exports.changeuserusername = async (req, res) => {
+    try {
+        await User.findOneAndUpdate(
+            { username: req.body.currentname },
+            { username: req.body.newname }
+        )
+        return res.render('auth/login', { msg:  'username changed' })
+    } catch (err) {
+        console.log(err)
+        res.send('username is not changed')
     }
 }
 
